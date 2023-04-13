@@ -1,10 +1,14 @@
 import React from 'react'
 import NavbarFooter from '../../components/common/navbar_footer'
+import { SectionWrapper } from '../../components/common/section_wrapper'
+import Discovery from '../../components/discovery'
 
 export default function DiscoveryScreen() {
   return (
     <>
-      <h1>Discovery</h1>
+      <SectionWrapper>
+        <Discovery />
+      </SectionWrapper>
       <NavbarFooter />
     </>
   )
