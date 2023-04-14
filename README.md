@@ -1,5 +1,7 @@
-# Spotify Clone Back-End
+# Spotify Clone
 
-## Database Schema
+## Back-End
+
+### Database Schema
 
 ![Database Schema](./public/documentation/db-schema.png)
