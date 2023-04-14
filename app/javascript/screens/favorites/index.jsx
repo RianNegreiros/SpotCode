@@ -8,7 +8,7 @@ export default function FavoritesScreen() {
   return (
     <>
       <SectionWrapper>
-        <Heading className='has-text-centered has-text-white'>Favoritos</Heading>
+        <Heading className='has-text-centered has-text-white'>Favorites</Heading>
         <Favorites />
       </SectionWrapper>
       <NavbarFooter />
