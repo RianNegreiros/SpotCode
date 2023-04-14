@@ -20,7 +20,7 @@ export default function NavbarFooter() {
     <>
         <NavbarWithBorder fixed='bottom' color='dark'>
             <Container>
-                <ColumnsFullWidth className='is-mobile is-vcentered'>
+                <ColumnsFullWidth className='is-mobile is-centered'>
                 <Columns.Column className='has-text-centered'>
                     <Link to='/discovery' className='has-text-white'>
                         <FaHome size='25px'/>
