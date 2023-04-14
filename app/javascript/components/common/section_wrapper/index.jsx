@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container, Section } from 'react-bulma-components'
 
-export function SectionWrapper(props) {
+export default function SectionWrapper(props) {
   return (
     <Section>
       <Container>
