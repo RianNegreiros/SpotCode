@@ -54,3 +54,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "devise", "~> 4.9"
+
+gem "rack-cors", "~> 2.0"
+
+gem "serviceworker-rails", "~> 0.6.0"
