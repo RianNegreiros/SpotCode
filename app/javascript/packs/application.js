@@ -8,7 +8,7 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 
-import '../../assets/javascript/serviceworker-companion.js'
+import '../../assets/javascripts/serviceworker-companion.js'
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
