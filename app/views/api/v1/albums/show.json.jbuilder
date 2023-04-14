@@ -1,7 +1,8 @@
-json.title
-josn.cover_url
+json.title @album.title
+josn.cover_url url_for(@album.cover)
+json.artist_name @album.artist.name
 
-json.songs @songs.each do |song|
+json.songs @album.songs.each do |song|
   json.id song.id
   json.title song.title
   json.file_url url_for(song.file)
