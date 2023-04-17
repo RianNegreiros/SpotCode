@@ -28,6 +28,7 @@ This is an MVP application
 
 - [Ruby 3.0.0](https://www.ruby-lang.org/en/news/2020/12/25/ruby-3-0-0-released/)
 - [Rails 6.0.3.3](https://rubygems.org/gems/rails/versions/6.0.3.3)
+- [Node 15.0.1](https://nodejs.org/en/blog/release/v15.0.1)
 - [SQLite](https://www.sqlite.org/index.html)
 
 ### On project folder:
