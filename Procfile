@@ -1,1 +1,1 @@
-web: rake db:migrate && bin/rails server -b 0.0.0.0 -p ${PORT:-3000}
+web: export NODE_OPTIONS=--openssl-legacy-provider && rake db:migrate && bin/rails server -b 0.0.0.0 -p ${PORT:-3000}
