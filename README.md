@@ -1,6 +1,6 @@
 # Spotify Clone
 
-This is an MVP application
+MVP application inspired on [Spotify](https://spotify.com) built with Ruby On Rails and Reactjs
 
 ![Application Preview](./public/documentation/preview.png)
 
