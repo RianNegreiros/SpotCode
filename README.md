@@ -46,7 +46,7 @@ rails db:migrate
 ```
 
  - ***Optionally*** you can seed the database with dummy data
-  1. Download the [dummy data](https://drive.google.com/file/d/1MxaS4GkzMXJK7WqmKmfO-XDsbY5I5Nmi/view)
+  1. Download the [dummy data](https://www.dropbox.com/scl/fo/z128ovtt6oaghzbb5o8o7/h?dl=0&rlkey=aeddj8ozdb4hxq099f3wbka6e)
   2. Copy the content to tmp/seed_files
   3. Seed the database
    ```bash
