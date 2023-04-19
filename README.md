@@ -83,4 +83,4 @@ rails s
 
 * [Rack-cors](https://github.com/cyu/rack-cors) - Rack Middleware for handling Cross-Origin Resource Sharing (CORS)
 
-* [Toast-rails](https://github.com/tylergannon/toastr-rails) - Messages beautiful based toasttrjs
+* [Toast-rails](https://github.com/tylergannon/toastr-rails) - Messages beautiful based [toastrjs](https://github.com/CodeSeven/toastr)
