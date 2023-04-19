@@ -1,6 +1,8 @@
 name: "Spotify Clone CI"
 on:
   push:
+    paths-ignore:
+      - 'README.md'
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
