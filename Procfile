@@ -1,1 +1,1 @@
-web: rake db:migrate && bin/rails server -b 0.0.0.0 -p ${PORT:-3000}
+web: sudo apt-get install unzip && rake db:migrate && bin/rails server -b 0.0.0.0 -p ${PORT:-3000}
