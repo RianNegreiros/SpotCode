@@ -1,4 +1,4 @@
-[![Ruby on Rails CI](https://github.com/RianNegreiros/spotify-clone/actions/workflows/rubyonrails.yml/badge.svg)](https://github.com/RianNegreiros/spotify-clone/actions/workflows/rubyonrails.yml)
+[![Spotify Clone CI](https://github.com/RianNegreiros/spotify-clone/actions/workflows/rubyonrails.yml/badge.svg)](https://github.com/RianNegreiros/spotify-clone/actions/workflows/rubyonrails.yml)
 
 # Spotify Clone
 
