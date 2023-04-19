@@ -110,6 +110,6 @@ Rails.application.configure do
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
 
-  config.hosts << "spotify-clone-production-885e.up.railway.app"
+  config.hosts << "web-production-29527.up.railway.app"
   config.hosts << "spotify-clone-dkmm.onrender.com"
 end

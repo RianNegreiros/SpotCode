@@ -60,6 +60,6 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
-  config.hosts << "spotify-clone-production-885e.up.railway.app"
+  config.hosts << "web-production-29527.up.railway.app"
   config.hosts << "spotify-clone-dkmm.onrender.com"
 end
