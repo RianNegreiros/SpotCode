@@ -1,3 +1,5 @@
+[![Ruby on Rails CI](https://github.com/RianNegreiros/spotify-clone/actions/workflows/rubyonrails.yml/badge.svg)](https://github.com/RianNegreiros/spotify-clone/actions/workflows/rubyonrails.yml)
+
 # Spotify Clone
 
 MVP application inspired on [Spotify](https://spotify.com) built with Ruby On Rails and Reactjs
