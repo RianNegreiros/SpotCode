@@ -71,5 +71,6 @@ wget https://www.dropbox.com/s/j99nszt7kklz3fa/years_and_years_ago.jpg?dl=0 --co
 wget https://www.dropbox.com/s/f26wondvf3cllo9/yellow_chair.jpg?dl=0 --content-disposition
 
 yarn install --check-files --frozen-lockfile
+bundle binstubs bundler --force
 rake db:prepare
 rake db:seed
