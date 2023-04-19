@@ -70,7 +70,9 @@ wget https://www.dropbox.com/s/8qy6kku375db0fr/waylon_thornton.jpg?dl=0 --conten
 wget https://www.dropbox.com/s/j99nszt7kklz3fa/years_and_years_ago.jpg?dl=0 --content-disposition
 wget https://www.dropbox.com/s/f26wondvf3cllo9/yellow_chair.jpg?dl=0 --content-disposition
 
+bundle install
 yarn install --check-files --frozen-lockfile
-bundle binstubs bundler --force
-rake db:prepare
-rake db:seed
+bundle exec rake assets:precompile
+bundle exec rake assets:clean
+bundle exec rake db:migrate
+bundle exec rake db:seed
