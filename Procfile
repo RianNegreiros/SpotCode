@@ -1,1 +1,1 @@
-web: wget https://www.dropbox.com/sh/ybwqrlnhxl8hu2r/AAC_6_YO2PtHZi4wt4VaQB-La\?dl\=0 --content-disposition && mkdir tmp/seed_files && sudo apt-get install unzip && unzip seed_files.zip -d tmp/seed_files && rake db:migrate && bin/rails server -b 0.0.0.0 -p ${PORT:-3000}
+web: rake db:migrate && bin/rails server -b 0.0.0.0 -p ${PORT:-3000}
