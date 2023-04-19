@@ -3,6 +3,7 @@ on:
   push:
     paths-ignore:
       - 'README.md'
+      - 'bin/**'
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
