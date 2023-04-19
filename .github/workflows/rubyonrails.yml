@@ -1,0 +1,40 @@
+name: "Ruby on Rails CI"
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 15.0.1
+        
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf # v1.146.0
+        with:
+          ruby-version: 3.0.0
+
+      - name: Install dependencies
+        run: |
+          sudo apt install sqlite3
+          gem install bundler
+          
+      - name: Run install
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: install # will run `yarn install` command
+          
+      - name : Install gems
+        run: |
+          bundle install
+          
+      - name: Setup database
+        run: |
+          bundle exec rails db:prepare
