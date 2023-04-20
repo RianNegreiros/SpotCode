@@ -4,16 +4,16 @@ import DiscoveryScreen from "./screens/discovery"
 import SearchScreen from "./screens/search"
 import AlbumScreen from "./screens/album"
 import FavoritesScreen from "./screens/favorites"
-import { Switch, Route } from "react-router-dom"
+import { Routes as Switch, Route } from "react-router-dom"
 
 export default function Routes() {
   return (
     <Switch>
-      <Route exact path="/" component={HomeScreen} />
-      <Route exact path="/discovery" component={DiscoveryScreen} />
-      <Route exact path="/search" component={SearchScreen} />
-      <Route exact path="/album/:id" component={AlbumScreen} />
-      <Route exact path="/favorites" component={FavoritesScreen} />
+      <Route exact path="/" element={HomeScreen()} />
+      <Route exact path="/discovery" element={DiscoveryScreen()} />
+      <Route exact path="/search" element={SearchScreen()} />
+      <Route exact path="/album/:id" element={AlbumScreen()} />
+      <Route exact path="/favorites" element={FavoritesScreen()} />
     </Switch>
   )
 }
