@@ -2,7 +2,7 @@
 
 # Spotify Clone
 
-MVP application inspired on [Spotify](https://spotify.com) built with Ruby On Rails and Reactjs
+MVP application inspired on [Spotify](https://spotify.com) built with Ruby On Rails and Reactjs deployed on [Railway](https://railway.app?referralCode=rDH-wq)
 
 ![Application Preview](./public/documentation/preview.png)
 
