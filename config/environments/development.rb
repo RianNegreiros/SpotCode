@@ -60,5 +60,5 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
-  config.hosts << "web-production-29527.up.railway.app"
+  config.hosts << "web-production-c7e7.up.railway.app"
 end
