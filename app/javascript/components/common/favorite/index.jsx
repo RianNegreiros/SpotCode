@@ -21,6 +21,8 @@ export default function Favorite(props) {
     setFavored(true)
   }
   return (
+    <>
     { FavoredButton }
+    </>
   )
 }
