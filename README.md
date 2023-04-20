@@ -37,14 +37,13 @@ MVP application inspired on [Spotify](https://spotify.com) built with Ruby On Ra
 
 1. Install the dependencies:
 ```bash
-yarn install
 bundle install
+yarn install
 ```
 
 2. Setup the database:
 ```bash
-rails db:create
-rails db:migrate
+rails db:prepare
 ```
 
  - ***Optionally*** you can seed the database with dummy data
@@ -55,15 +54,12 @@ rails db:migrate
   rails db:seed
   ```
 
-3. Install webpacker:
-```bash
-bundle exec rails webpacker:install
-```
-
-4. Run the application:
+3. Run the application:
 ```bash
 rails s
 ```
+
+4. Access the application on [localhost](http://localhost:3000)
 
 ### On Docker:
 
@@ -72,7 +68,8 @@ rails s
 - [Docker](https://docs.docker.com/get-docker/)
 - [Docker Compose](https://docs.docker.com/compose/)
 
-1. Run docker-compose up
+1. Run ```docker-compose up```
+2. Access the application on [localhost](http://localhost:3000)
 
 ### Database Schema
 
