@@ -26,14 +26,14 @@ MVP application inspired on [Spotify](https://spotify.com) built with Ruby On Ra
 
 ## How to Run
 
-### Pre Requirements
+### On Local:
+
+#### Pre Requirements
 
 - [Ruby 3.0.0](https://www.ruby-lang.org/en/news/2020/12/25/ruby-3-0-0-released/)
 - [Rails 6.0.3.3](https://rubygems.org/gems/rails/versions/6.0.3.3)
 - [Node 15.0.1](https://nodejs.org/en/blog/release/v15.0.1)
 - [SQLite](https://www.sqlite.org/index.html)
-
-### On project folder:
 
 1. Install the dependencies:
 ```bash
@@ -64,6 +64,15 @@ bundle exec rails webpacker:install
 ```bash
 rails s
 ```
+
+### On Docker:
+
+#### Pre Requirements
+
+- [Docker](https://docs.docker.com/get-docker/)
+- [Docker Compose](https://docs.docker.com/compose/)
+
+1. Run docker-compose up
 
 ### Database Schema
 
