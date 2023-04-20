@@ -61,5 +61,4 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   config.hosts << "web-production-29527.up.railway.app"
-  config.hosts << "spotify-clone-dkmm.onrender.com"
 end
