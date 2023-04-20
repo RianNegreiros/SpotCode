@@ -74,7 +74,6 @@ wget https://www.dropbox.com/s/8qy6kku375db0fr/waylon_thornton.jpg?dl=0 --conten
 wget https://www.dropbox.com/s/j99nszt7kklz3fa/years_and_years_ago.jpg?dl=0 --content-disposition
 wget https://www.dropbox.com/s/f26wondvf3cllo9/yellow_chair.jpg?dl=0 --content-disposition
 
-bundle exec rake assets:precompile
 bundle exec rake db:prepare
 bundle exec rake db:seed
 bundle exec rails s -b 0.0.0.0
