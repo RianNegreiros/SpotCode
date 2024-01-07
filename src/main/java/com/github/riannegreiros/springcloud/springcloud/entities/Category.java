@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name = "tb_category")
 public class Category extends BaseEntity {
 
     @Id

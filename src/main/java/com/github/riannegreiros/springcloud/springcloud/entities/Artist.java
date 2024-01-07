@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name = "tb_artist")
 public class Artist extends BaseEntity {
 
     @Id

@@ -3,6 +3,7 @@ package com.github.riannegreiros.springcloud.springcloud.entities;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "tb_file")
 public class FileAttachment extends BaseEntity {
 
     @Id

@@ -3,6 +3,7 @@ package com.github.riannegreiros.springcloud.springcloud.entities;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "tb_song")
 public class Song extends BaseEntity {
 
     @Id
