@@ -1,6 +1,7 @@
 package com.github.riannegreiros.springcloud.springcloud.entities;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -25,7 +26,7 @@ public class Album extends BaseEntity {
     private String title;
 
     @Column(nullable = false)
-    private String date;
+    private LocalDate date;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cover_id", referencedColumnName = "id")
@@ -34,7 +35,7 @@ public class Album extends BaseEntity {
     public Album() {
     }
 
-    public Album(Long id, Category category, Artist artist, List<Song> songs, String title, String date, Image cover) {
+    public Album(Long id, Category category, Artist artist, List<Song> songs, String title, LocalDate date, Image cover) {
         this.id = id;
         this.category = category;
         this.artist = artist;
@@ -86,11 +87,11 @@ public class Album extends BaseEntity {
         this.title = title;
     }
 
-    public String getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
