@@ -24,7 +24,7 @@ public class UserService implements UserDetailsService {
     private PasswordEncoder passwordEncoder;
 
     @Transactional
-    public User createUser(String name, String email, String password) {
+    public User save(String name, String email, String password) {
         User user = new User();
         user.setName(name);
         user.setEmail(email);

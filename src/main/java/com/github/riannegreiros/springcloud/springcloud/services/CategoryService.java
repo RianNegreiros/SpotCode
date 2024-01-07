@@ -1,5 +1,6 @@
 package com.github.riannegreiros.springcloud.springcloud.services;
 
+import com.github.riannegreiros.springcloud.springcloud.entities.Album;
 import com.github.riannegreiros.springcloud.springcloud.entities.Category;
 import com.github.riannegreiros.springcloud.springcloud.repositories.CategoryRepository;
 import org.slf4j.Logger;
@@ -17,7 +18,13 @@ public class CategoryService {
     private CategoryRepository repository;
 
     @Transactional
-    public Category save(Category category) {
+    public Category save(String categoryName) {
+        Category category = new Category();
+        category.setName(categoryName);
         return repository.save(category);
+    }
+
+    public Category findByName(String name) {
+        return repository.findByName(name);
     }
 }

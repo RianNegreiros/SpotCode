@@ -1,5 +1,6 @@
 package com.github.riannegreiros.springcloud.springcloud.services;
 
+import com.github.riannegreiros.springcloud.springcloud.entities.Album;
 import com.github.riannegreiros.springcloud.springcloud.entities.Song;
 import com.github.riannegreiros.springcloud.springcloud.repositories.SongRepository;
 import org.slf4j.Logger;
@@ -17,7 +18,10 @@ public class SongService {
     private SongRepository repository;
 
     @Transactional
-    public Song save(Song song) {
+    public Song save(Album album, String title) {
+        Song song = new Song();
+        song.setAlbum(album);
+        song.setTitle(title);
         return repository.save(song);
     }
 }

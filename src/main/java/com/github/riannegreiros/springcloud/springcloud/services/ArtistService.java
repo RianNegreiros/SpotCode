@@ -1,6 +1,7 @@
 package com.github.riannegreiros.springcloud.springcloud.services;
 
 import com.github.riannegreiros.springcloud.springcloud.entities.Artist;
+import com.github.riannegreiros.springcloud.springcloud.entities.Category;
 import com.github.riannegreiros.springcloud.springcloud.repositories.ArtistRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +18,13 @@ public class ArtistService {
     private ArtistRepository repository;
 
     @Transactional
-    public Artist save(Artist artist) {
+    public Artist save(String name) {
+        Artist artist = new Artist();
+        artist.setName(name);
         return repository.save(artist);
+    }
+
+    public Artist findByName(String name) {
+        return repository.findByName(name);
     }
 }
