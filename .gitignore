@@ -31,3 +31,7 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Seed Files ###
+src/main/resources/images
+src/main/resources/musics
