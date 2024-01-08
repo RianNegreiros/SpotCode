@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
-import java.util.List;
 
 @Service
 public class RecentlyHeardService {
@@ -27,13 +26,5 @@ public class RecentlyHeardService {
         recentlyHeard.setUser(user);
         recentlyHeard.setAlbum(album);
         recentlyHeardRepository.save(recentlyHeard);
-    }
-
-    public List<Album> getRecentHeards(Long userId) {
-        // Assuming RecentlyHeard has a ManyToOne relationship with Album
-        return recentlyHeardRepository.findTop4ByUserIdOrderByCreatedAtDesc(userId)
-                .stream()
-                .map(RecentlyHeard::getAlbum)
-                .toList();
     }
 }
