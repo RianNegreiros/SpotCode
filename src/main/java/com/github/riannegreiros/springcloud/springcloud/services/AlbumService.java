@@ -59,15 +59,4 @@ public class AlbumService {
                 .distinct()
                 .collect(Collectors.toList());
     }
-
-    public List<Album> getRecommendedAlbums(List<String> heardCategories) {
-        return repository.findDistinctByCategoryInOrderByPlayedCount(heardCategories)
-                .stream()
-                .limit(12)
-                .toList();
-    }
-
-    public List<Album> getAllAlbumsSample(int limit) {
-        return repository.findAll().stream().limit(limit).toList();
-    }
 }

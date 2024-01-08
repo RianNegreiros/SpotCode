@@ -1,7 +1,15 @@
 package com.github.riannegreiros.springcloud.springcloud.services;
 
+import com.github.riannegreiros.springcloud.springcloud.dto.DashboardData;
 import com.github.riannegreiros.springcloud.springcloud.entities.Album;
+import com.github.riannegreiros.springcloud.springcloud.entities.Category;
+import com.github.riannegreiros.springcloud.springcloud.entities.RecentlyHeard;
+import com.github.riannegreiros.springcloud.springcloud.entities.User;
+import com.github.riannegreiros.springcloud.springcloud.repositories.AlbumRepository;
+import com.github.riannegreiros.springcloud.springcloud.repositories.RecentlyHeardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,22 +18,52 @@ import java.util.List;
 public class DashboardService {
 
     @Autowired
-    private RecentlyHeardService recentlyHeardService;
+    private RecentlyHeardRepository recentlyHeardRepository;
 
     @Autowired
-    private AlbumService albumService;
+    AlbumRepository albumRepository;
 
-    public List<Album> getRecentAlbums(Long userId) {
-        return recentlyHeardService.getRecentHeards(userId);
+    public DashboardData loadDashboardData() {
+        List<Album> recentAlbums = loadRecentHeard();
+        List<Album> recommendAlbums = loadRecommendations(recentAlbums);
+
+        return new DashboardData(recentAlbums, recommendAlbums);
     }
 
-    public List<Album> getRecommendedAlbums(List<Album> recentAlbums) {
-        List<String> heardCategories = albumService.getHeardCategories(recentAlbums);
+    private List<Album> loadRecentHeard() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Long userId = null;
+
+        if (authentication != null && authentication.getPrincipal() instanceof User userDetails) {
+            userId = userDetails.getId();
+        }
+
+        List<RecentlyHeard> recentlyHeardList = recentlyHeardRepository.findByUserId(userId);
+
+        return recentlyHeardList.stream()
+                .map(RecentlyHeard::getAlbum)
+                .toList();
+    }
+
+    private List<Album> loadRecommendations(List<Album> recentAlbums) {
+        if (recentAlbums.isEmpty()) {
+            return albumRepository.findRandomAlbums(12);
+        }
+
+        List<Category> heardCategories = extractHeardCategories(recentAlbums);
 
         if (!heardCategories.isEmpty()) {
-            return albumService.getRecommendedAlbums(heardCategories);
+            return albumRepository.findTopRecommendationsByCategories(heardCategories, 12);
         } else {
-            return albumService.getAllAlbumsSample(12);
+            return albumRepository.findRandomAlbums(12);
         }
     }
+
+    private List<Category> extractHeardCategories(List<Album> recentAlbums) {
+        return recentAlbums.stream()
+                .map(Album::getCategory)
+                .distinct()
+                .toList();
+    }
+
 }
