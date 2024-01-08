@@ -15,9 +15,7 @@ import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class AlbumService {
@@ -52,11 +50,5 @@ public class AlbumService {
         Optional<Album> album = repository.findById(id);
 
         return album.orElseThrow(() -> new EntityNotFoundException("Album not found by id:" + id));
-    }
-    public List<String> getHeardCategories(List<Album> recentAlbums) {
-        return recentAlbums.stream()
-                .map(Album::getTitle)
-                .distinct()
-                .collect(Collectors.toList());
     }
 }

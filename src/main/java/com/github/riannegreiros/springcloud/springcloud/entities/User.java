@@ -25,21 +25,24 @@ public class User implements UserDetails, Serializable {
     private String password;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Favorite> favorites = new HashSet<>();
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<RecentlyHeard> recentlyHeards = new HashSet<>();
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Favorite> favorites = new HashSet<>();
 
     public User() {
     }
 
-    public User(String name, String email, String password, Set<Favorite> favorites, Set<RecentlyHeard> recentlyHeards) {
+    public User(Long id, String name, String email, String password, Set<RecentlyHeard> recentlyHeards) {
+        this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
-        this.favorites = favorites;
         this.recentlyHeards = recentlyHeards;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -61,7 +64,6 @@ public class User implements UserDetails, Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
-
 
     public Set<Favorite> getFavorites() {
         return favorites;

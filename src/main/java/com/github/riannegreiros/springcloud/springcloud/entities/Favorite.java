@@ -1,29 +1,46 @@
 package com.github.riannegreiros.springcloud.springcloud.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-@Table(name = "favorites")
-public class Favorite {
+@Table(name = "tb_favorite")
+public class Favorite implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "favoritable_id")
+    private Long favoritableId;
+
+    @Column(name = "favoritable_type")
+    private String favoritableType;
+
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "favoritable_id", nullable = false)
-    private Favoritable favoritable;
+    @JoinColumn(name = "album_id")
+    private Album album;
+
+    @ManyToOne
+    @JoinColumn(name = "artist_id")
+    private Artist artist;
+
+    @ManyToOne
+    @JoinColumn(name = "song_id")
+    private Song song;
 
     public Favorite() {
     }
 
-    public Favorite(Long id, User user, Favoritable favoritable) {
-        this.id = id;
+    public Favorite(User user, Album album, Artist artist, Song song) {
         this.user = user;
-        this.favoritable = favoritable;
+        this.album = album;
+        this.artist = artist;
+        this.song = song;
     }
 
     public Long getId() {
@@ -42,11 +59,43 @@ public class Favorite {
         this.user = user;
     }
 
-    public Favoritable getFavoritable() {
-        return favoritable;
+    public Album getAlbum() {
+        return album;
     }
 
-    public void setFavoritable(Favoritable favoritable) {
-        this.favoritable = favoritable;
+    public void setAlbum(Album album) {
+        this.album = album;
+    }
+
+    public Artist getArtist() {
+        return artist;
+    }
+
+    public void setArtist(Artist artist) {
+        this.artist = artist;
+    }
+
+    public Song getSong() {
+        return song;
+    }
+
+    public void setSong(Song song) {
+        this.song = song;
+    }
+
+    public Long getFavoritableId() {
+        return favoritableId;
+    }
+
+    public void setFavoritableId(Long favoritableId) {
+        this.favoritableId = favoritableId;
+    }
+
+    public String getFavoritableType() {
+        return favoritableType;
+    }
+
+    public void setFavoritableType(String favoritableType) {
+        this.favoritableType = favoritableType;
     }
 }
