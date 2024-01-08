@@ -19,12 +19,12 @@ public class Song extends BaseEntity {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "file_id", referencedColumnName = "id")
-    private FileAttachment file;
+    private AudioFile file;
 
     public Song() {
     }
 
-    public Song(Long id, Album album, String title, FileAttachment file) {
+    public Song(Long id, Album album, String title, AudioFile file) {
         this.id = id;
         this.album = album;
         this.title = title;
@@ -57,11 +57,11 @@ public class Song extends BaseEntity {
         this.title = title;
     }
 
-    public FileAttachment getFile() {
+    public AudioFile getFile() {
         return file;
     }
 
-    public void setFile(FileAttachment file) {
+    public void setFile(AudioFile file) {
         this.file = file;
     }
 }

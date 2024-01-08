@@ -1,14 +1,16 @@
 package com.github.riannegreiros.springcloud.springcloud.services;
 
-import com.github.riannegreiros.springcloud.springcloud.entities.Album;
 import com.github.riannegreiros.springcloud.springcloud.entities.Category;
+import com.github.riannegreiros.springcloud.springcloud.entities.Image;
 import com.github.riannegreiros.springcloud.springcloud.repositories.CategoryRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
+import java.io.IOException;
 
 @Service
 public class CategoryService {
@@ -18,9 +20,17 @@ public class CategoryService {
     private CategoryRepository repository;
 
     @Transactional
-    public Category save(String categoryName) {
+    public Category save(String categoryName, MultipartFile imageFile) throws IOException {
         Category category = new Category();
         category.setName(categoryName);
+
+        Image imageEntity = new Image();
+        imageEntity.setImageName(imageFile.getOriginalFilename());
+        imageEntity.setContentType(imageFile.getContentType());
+        imageEntity.setData(imageFile.getBytes());
+
+        category.setImage(imageEntity);
+
         return repository.save(category);
     }
 

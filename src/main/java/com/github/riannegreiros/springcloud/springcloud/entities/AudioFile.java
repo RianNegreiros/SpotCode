@@ -3,8 +3,8 @@ package com.github.riannegreiros.springcloud.springcloud.entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "tb_file")
-public class FileAttachment extends BaseEntity {
+@Table(name = "tb_audio_file")
+public class AudioFile extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,19 +14,19 @@ public class FileAttachment extends BaseEntity {
     private String fileName;
 
     @Column(nullable = false)
-    private String fileType;
+    private String contentType;
 
     @Lob
     @Column(nullable = false)
     private byte[] data;
 
-    public FileAttachment() {
+    public AudioFile() {
     }
 
-    public FileAttachment(Long id, String fileName, String fileType, byte[] data) {
+    public AudioFile(Long id, String fileName, String contentType, byte[] data) {
         this.id = id;
         this.fileName = fileName;
-        this.fileType = fileType;
+        this.contentType = contentType;
         this.data = data;
     }
 
@@ -48,12 +48,12 @@ public class FileAttachment extends BaseEntity {
         this.fileName = fileName;
     }
 
-    public String getFileType() {
-        return fileType;
+    public String getContentType() {
+        return contentType;
     }
 
-    public void setFileType(String fileType) {
-        this.fileType = fileType;
+    public void setContentType(String contentType) {
+        this.contentType = contentType;
     }
 
     public byte[] getData() {
