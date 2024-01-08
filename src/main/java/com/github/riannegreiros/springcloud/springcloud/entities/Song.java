@@ -4,7 +4,12 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "tb_song")
-public class Song extends BaseEntity {
+public class Song {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @ManyToOne
     @JoinColumn(name = "album_id")
     private Album album;
@@ -59,5 +64,9 @@ public class Song extends BaseEntity {
 
     public void setFile(AudioFile file) {
         this.file = file;
+    }
+
+    public Long getId() {
+        return id;
     }
 }

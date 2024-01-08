@@ -4,7 +4,11 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "tb_audio_file")
-public class AudioFile extends BaseEntity {
+public class AudioFile {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(nullable = false)
     private String fileName;
@@ -15,6 +19,7 @@ public class AudioFile extends BaseEntity {
     @Lob
     @Column(nullable = false)
     private byte[] data;
+
 
     public AudioFile() {
     }

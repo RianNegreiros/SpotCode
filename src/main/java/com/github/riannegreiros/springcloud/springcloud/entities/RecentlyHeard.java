@@ -1,13 +1,15 @@
 package com.github.riannegreiros.springcloud.springcloud.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "recently_heards")
-public class RecentlyHeard extends BaseEntity{
+public class RecentlyHeard {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
@@ -39,4 +41,5 @@ public class RecentlyHeard extends BaseEntity{
     public void setAlbum(Album album) {
         this.album = album;
     }
+
 }

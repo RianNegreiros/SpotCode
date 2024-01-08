@@ -5,7 +5,11 @@ import java.util.List;
 
 @Entity
 @Table(name = "tb_category")
-public class Category extends BaseEntity {
+public class Category {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(nullable = false)
     private String name;
@@ -16,6 +20,7 @@ public class Category extends BaseEntity {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "image_id", referencedColumnName = "id")
     private Image image;
+
 
     public Category() {
     }

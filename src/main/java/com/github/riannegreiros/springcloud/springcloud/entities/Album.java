@@ -6,7 +6,11 @@ import java.util.List;
 
 @Entity
 @Table(name = "tb_album")
-public class Album extends BaseEntity {
+public class Album {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
@@ -98,5 +102,9 @@ public class Album extends BaseEntity {
 
     public void setRecentlyHeard(List<RecentlyHeard> recentlyHeard) {
         this.recentlyHeard = recentlyHeard;
+    }
+
+    public Long getId() {
+        return id;
     }
 }

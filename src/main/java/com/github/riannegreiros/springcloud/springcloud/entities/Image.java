@@ -4,7 +4,11 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "tb_image")
-public class Image extends BaseEntity {
+public class Image  {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Lob
     @Column(nullable = false)

@@ -5,7 +5,12 @@ import java.util.List;
 
 @Entity
 @Table(name = "tb_artist")
-public class Artist extends BaseEntity {
+public class Artist {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
 
     @Column(nullable = false)
     private String name;
@@ -48,5 +53,9 @@ public class Artist extends BaseEntity {
 
     public void setPhoto(Image photo) {
         this.photo = photo;
+    }
+
+    public Long getId() {
+        return id;
     }
 }

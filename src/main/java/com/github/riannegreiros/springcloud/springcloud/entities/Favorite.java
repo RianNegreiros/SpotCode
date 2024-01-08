@@ -1,37 +1,37 @@
 package com.github.riannegreiros.springcloud.springcloud.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "favorites")
-public class Favorite extends BaseEntity {
+public class Favorite {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "song_id")
-    private Song song;
-
-    @ManyToOne
-    @JoinColumn(name = "artist_id")
-    private Artist artist;
-
-    @ManyToOne
-    @JoinColumn(name = "album_id")
-    private Album album;
+    @JoinColumn(name = "favoritable_id", nullable = false)
+    private Favoritable favoritable;
 
     public Favorite() {
     }
 
-    public Favorite(User user, Song song, Artist artist, Album album) {
+    public Favorite(Long id, User user, Favoritable favoritable) {
+        this.id = id;
         this.user = user;
-        this.song = song;
-        this.artist = artist;
-        this.album = album;
+        this.favoritable = favoritable;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public User getUser() {
@@ -42,27 +42,11 @@ public class Favorite extends BaseEntity {
         this.user = user;
     }
 
-    public Song getSong() {
-        return song;
+    public Favoritable getFavoritable() {
+        return favoritable;
     }
 
-    public void setSong(Song song) {
-        this.song = song;
-    }
-
-    public Artist getArtist() {
-        return artist;
-    }
-
-    public void setArtist(Artist artist) {
-        this.artist = artist;
-    }
-
-    public Album getAlbum() {
-        return album;
-    }
-
-    public void setAlbum(Album album) {
-        this.album = album;
+    public void setFavoritable(Favoritable favoritable) {
+        this.favoritable = favoritable;
     }
 }

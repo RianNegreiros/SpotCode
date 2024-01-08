@@ -3,10 +3,7 @@ package com.github.riannegreiros.springcloud.springcloud.entities;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Collection;
@@ -14,11 +11,14 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "tb_user")
-public class User extends BaseEntity implements UserDetails, Serializable {
+public class User implements UserDetails, Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     private String name;
     private String email;
@@ -29,6 +29,7 @@ public class User extends BaseEntity implements UserDetails, Serializable {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<RecentlyHeard> recentlyHeards = new HashSet<>();
+
 
     public User() {
     }
@@ -60,6 +61,7 @@ public class User extends BaseEntity implements UserDetails, Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
+
 
     public Set<Favorite> getFavorites() {
         return favorites;
@@ -110,5 +112,9 @@ public class User extends BaseEntity implements UserDetails, Serializable {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public Long getId() {
+        return id;
     }
 }
