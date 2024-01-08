@@ -9,8 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 import java.io.IOException;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CategoryService {
@@ -18,6 +21,10 @@ public class CategoryService {
 
     @Autowired
     private CategoryRepository repository;
+
+    public List<Category> findAll() {
+        return repository.findAll();
+    }
 
     @Transactional
     public Category save(String categoryName, MultipartFile imageFile) throws IOException {
@@ -36,5 +43,11 @@ public class CategoryService {
 
     public Category findByName(String name) {
         return repository.findByName(name);
+    }
+
+    public Category findById(Long id) {
+        Optional<Category> category = repository.findById(id);
+
+        return category.orElseThrow(() -> new EntityNotFoundException("Category not found by id: " + id));
     }
 }
