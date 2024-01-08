@@ -10,8 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 import java.io.IOException;
+import java.util.Optional;
 
 @Service
 public class SongService {
@@ -23,8 +25,8 @@ public class SongService {
     @Transactional
     public Song save(Album album, String title, MultipartFile audioFile) throws IOException {
         Song song = new Song();
-        song.setAlbum(album);
         song.setTitle(title);
+        song.setAlbum(album);
 
         AudioFile audioFileEntity = new AudioFile();
         audioFileEntity.setFileName(audioFile.getOriginalFilename());
@@ -34,5 +36,10 @@ public class SongService {
         song.setFile(audioFileEntity);
 
         return repository.save(song);
+    }
+
+    public Song findById(Long id) {
+        Optional<Song> song = repository.findById(id);
+        return song.orElseThrow(() -> new EntityNotFoundException("Song not found by id:" + id));
     }
 }

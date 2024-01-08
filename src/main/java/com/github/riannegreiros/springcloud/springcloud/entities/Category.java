@@ -7,10 +7,6 @@ import java.util.List;
 @Table(name = "tb_category")
 public class Category extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     @Column(nullable = false)
     private String name;
 
@@ -24,21 +20,10 @@ public class Category extends BaseEntity {
     public Category() {
     }
 
-    public Category(Long id, String name, List<Album> albums, Image image) {
-        this.id = id;
+    public Category(String name, List<Album> albums, Image image) {
         this.name = name;
         this.albums = albums;
         this.image = image;
-    }
-
-    @Override
-    public Long getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {

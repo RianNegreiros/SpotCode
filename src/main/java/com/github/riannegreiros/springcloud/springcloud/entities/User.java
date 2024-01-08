@@ -3,13 +3,15 @@ package com.github.riannegreiros.springcloud.springcloud.entities;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_user")
@@ -18,32 +20,25 @@ public class User extends BaseEntity implements UserDetails, Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
     private String name;
     private String email;
     private String password;
 
-    @OneToMany(mappedBy = "user")
-    private List<RecentlyHeard> recentlyHeards;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Favorite> favorites = new HashSet<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<RecentlyHeard> recentlyHeards = new HashSet<>();
 
     public User() {
     }
 
-    public User(Long id, String name, String email, String password) {
-        this.id = id;
+    public User(String name, String email, String password, Set<Favorite> favorites, Set<RecentlyHeard> recentlyHeards) {
         this.name = name;
         this.email = email;
         this.password = password;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+        this.favorites = favorites;
+        this.recentlyHeards = recentlyHeards;
     }
 
     public String getName() {
@@ -64,6 +59,22 @@ public class User extends BaseEntity implements UserDetails, Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Set<Favorite> getFavorites() {
+        return favorites;
+    }
+
+    public void setFavorites(Set<Favorite> favorites) {
+        this.favorites = favorites;
+    }
+
+    public Set<RecentlyHeard> getRecentlyHeards() {
+        return recentlyHeards;
+    }
+
+    public void setRecentlyHeards(Set<RecentlyHeard> recentlyHeards) {
+        this.recentlyHeards = recentlyHeards;
     }
 
     @Override
@@ -99,18 +110,5 @@ public class User extends BaseEntity implements UserDetails, Serializable {
     @Override
     public boolean isEnabled() {
         return true;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(id, user.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
     }
 }

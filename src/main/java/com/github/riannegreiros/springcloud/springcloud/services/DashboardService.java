@@ -1,8 +1,10 @@
 package com.github.riannegreiros.springcloud.springcloud.services;
 
-import com.github.riannegreiros.springcloud.springcloud.dto.DashboardResponse;
+import com.github.riannegreiros.springcloud.springcloud.entities.Album;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class DashboardService {
@@ -11,14 +13,19 @@ public class DashboardService {
     private RecentlyHeardService recentlyHeardService;
 
     @Autowired
-    private RecommendationService recommendationService;
+    private AlbumService albumService;
 
-    public DashboardResponse getDashboardData() {
-        DashboardResponse response = new DashboardResponse();
+    public List<Album> getRecentAlbums(Long userId) {
+        return recentlyHeardService.getRecentHeards(userId);
+    }
 
-        response.setRecentAlbums(recentlyHeardService.loadRecentHeard());
-        response.setRecommendAlbums(recommendationService.loadRecommendations(response.getRecentAlbums()));
+    public List<Album> getRecommendedAlbums(List<Album> recentAlbums) {
+        List<String> heardCategories = albumService.getHeardCategories(recentAlbums);
 
-        return response;
+        if (!heardCategories.isEmpty()) {
+            return albumService.getRecommendedAlbums(heardCategories);
+        } else {
+            return albumService.getAllAlbumsSample(12);
+        }
     }
 }

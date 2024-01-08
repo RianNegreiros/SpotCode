@@ -1,15 +1,18 @@
 package com.github.riannegreiros.springcloud.springcloud.repositories;
 
 import com.github.riannegreiros.springcloud.springcloud.entities.Album;
-import com.github.riannegreiros.springcloud.springcloud.entities.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Set;
 
 @Repository
 public interface AlbumRepository extends JpaRepository<Album, Long> {
     Album findByTitle(String title);
-    List<Album> findDistinctByCategoryInOrderSongsPlayedCount(Set<Category> categories);
+
+    @Query("SELECT DISTINCT a FROM Album a JOIN a.songs s WHERE a.category IN :categories ORDER BY SUM(s.playedCount) DESC")
+    List<Album> findDistinctByCategoryInOrderByPlayedCount(List<String> categories);
+
+    List<Album> findByTitleContainingIgnoreCase(String query);
 }

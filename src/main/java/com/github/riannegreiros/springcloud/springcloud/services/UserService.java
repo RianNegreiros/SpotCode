@@ -5,6 +5,8 @@ import com.github.riannegreiros.springcloud.springcloud.repositories.UserReposit
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -33,6 +35,21 @@ public class UserService implements UserDetailsService {
         return repository.save(user);
     }
 
+    @Transactional
+    public User update(User updatedUser) {
+        User existingUser = repository.findById(updatedUser.getId()).orElse(null);
+
+        if (existingUser != null) {
+            existingUser.setName(updatedUser.getName());
+            existingUser.setEmail(updatedUser.getEmail());
+            existingUser.setPassword(passwordEncoder.encode(updatedUser.getPassword())); // Ensure to encode the password
+
+            return repository.save(existingUser);
+        }
+
+        return null;
+    }
+
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         User user = repository.findByEmail(s);
@@ -42,5 +59,19 @@ public class UserService implements UserDetailsService {
         }
         logger.info("User found: " + s);
         return user;
+    }
+
+    public User getCurrentUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || !authentication.isAuthenticated()) {
+            return null;
+        }
+
+        Object principal = authentication.getPrincipal();
+        if (principal instanceof User) {
+            return (User) principal;
+        }
+
+        return null;
     }
 }

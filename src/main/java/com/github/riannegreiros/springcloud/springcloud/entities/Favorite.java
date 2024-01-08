@@ -1,41 +1,37 @@
 package com.github.riannegreiros.springcloud.springcloud.entities;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "favorites")
-public class Favorite implements Favoritable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+public class Favorite extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "favoritable_id")
-    private Favoritable favoritable;
+    @JoinColumn(name = "song_id")
+    private Song song;
 
-    @Column(name = "favoritable_type")
-    private String favoritableType;
+    @ManyToOne
+    @JoinColumn(name = "artist_id")
+    private Artist artist;
+
+    @ManyToOne
+    @JoinColumn(name = "album_id")
+    private Album album;
 
     public Favorite() {
     }
 
-    public Favorite(Long id, User user, Favoritable favoritable, String favoritableType) {
-        this.id = id;
+    public Favorite(User user, Song song, Artist artist, Album album) {
         this.user = user;
-        this.favoritable = favoritable;
-        this.favoritableType = favoritableType.getClass().getSimpleName();
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+        this.song = song;
+        this.artist = artist;
+        this.album = album;
     }
 
     public User getUser() {
@@ -46,24 +42,27 @@ public class Favorite implements Favoritable {
         this.user = user;
     }
 
-    public Favoritable getFavoritable() {
-        return favoritable;
+    public Song getSong() {
+        return song;
     }
 
-    public void setFavoritable(Favoritable favoritable) {
-        this.favoritable = favoritable;
+    public void setSong(Song song) {
+        this.song = song;
     }
 
-    public String getFavoritableType() {
-        return favoritableType;
+    public Artist getArtist() {
+        return artist;
     }
 
-    public void setFavoritableType(String favoritableType) {
-        this.favoritableType = favoritableType;
+    public void setArtist(Artist artist) {
+        this.artist = artist;
     }
 
-    @Override
-    public String getTitle() {
-        return favoritable.getTitle();
+    public Album getAlbum() {
+        return album;
+    }
+
+    public void setAlbum(Album album) {
+        this.album = album;
     }
 }

@@ -5,11 +5,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "tb_song")
 public class Song extends BaseEntity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     @ManyToOne
     @JoinColumn(name = "album_id")
     private Album album;
@@ -27,22 +22,11 @@ public class Song extends BaseEntity {
     public Song() {
     }
 
-    public Song(Long id, Album album, String title, int playedCount, AudioFile file) {
-        this.id = id;
+    public Song(Album album, String title, int playedCount, AudioFile file) {
         this.album = album;
         this.title = title;
         this.playedCount = playedCount;
         this.file = file;
-    }
-
-    @Override
-    public Long getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public Album getAlbum() {

@@ -7,10 +7,6 @@ import java.util.List;
 @Table(name = "tb_artist")
 public class Artist extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     @Column(nullable = false)
     private String name;
 
@@ -24,21 +20,10 @@ public class Artist extends BaseEntity {
     public Artist() {
     }
 
-    public Artist(Long id, String name, List<Album> albums, Image photo) {
-        this.id = id;
+    public Artist(String name, List<Album> albums, Image photo) {
         this.name = name;
         this.albums = albums;
         this.photo = photo;
-    }
-
-    @Override
-    public Long getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {

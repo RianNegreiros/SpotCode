@@ -7,11 +7,6 @@ import java.util.List;
 @Entity
 @Table(name = "tb_album")
 public class Album extends BaseEntity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
@@ -39,24 +34,14 @@ public class Album extends BaseEntity {
     public Album() {
     }
 
-    public Album(Long id, Category category, Artist artist, List<Song> songs, String title, LocalDate date, Image cover) {
-        this.id = id;
+    public Album(Category category, Artist artist, List<Song> songs, String title, LocalDate date, Image cover, List<RecentlyHeard> recentlyHeard) {
         this.category = category;
         this.artist = artist;
         this.songs = songs;
         this.title = title;
         this.date = date;
         this.cover = cover;
-    }
-
-    @Override
-    public Long getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(Long id) {
-        this.id = id;
+        this.recentlyHeard = recentlyHeard;
     }
 
     public Category getCategory() {
@@ -105,5 +90,13 @@ public class Album extends BaseEntity {
 
     public void setCover(Image cover) {
         this.cover = cover;
+    }
+
+    public List<RecentlyHeard> getRecentlyHeard() {
+        return recentlyHeard;
+    }
+
+    public void setRecentlyHeard(List<RecentlyHeard> recentlyHeard) {
+        this.recentlyHeard = recentlyHeard;
     }
 }

@@ -6,10 +6,6 @@ import javax.persistence.*;
 @Table(name = "tb_audio_file")
 public class AudioFile extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     @Column(nullable = false)
     private String fileName;
 
@@ -23,21 +19,10 @@ public class AudioFile extends BaseEntity {
     public AudioFile() {
     }
 
-    public AudioFile(Long id, String fileName, String contentType, byte[] data) {
-        this.id = id;
+    public AudioFile(String fileName, String contentType, byte[] data) {
         this.fileName = fileName;
         this.contentType = contentType;
         this.data = data;
-    }
-
-    @Override
-    public Long getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getFileName() {

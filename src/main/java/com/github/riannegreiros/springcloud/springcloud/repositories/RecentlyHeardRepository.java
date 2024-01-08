@@ -10,5 +10,5 @@ import java.util.List;
 
 @Repository
 public interface RecentlyHeardRepository extends JpaRepository<RecentlyHeard, Long> {
-    List<RecentlyHeard> findByUserOrderByCreatedAtDesc(User user, Pageable pageable);
+    List<RecentlyHeard> findTop4ByUserIdOrderByCreatedAtDesc(Long userId);
 }
