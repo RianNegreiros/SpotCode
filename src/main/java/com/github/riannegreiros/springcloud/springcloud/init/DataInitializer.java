@@ -1,8 +1,6 @@
 package com.github.riannegreiros.springcloud.springcloud.init;
 
-import com.github.riannegreiros.springcloud.springcloud.entities.Album;
-import com.github.riannegreiros.springcloud.springcloud.entities.Artist;
-import com.github.riannegreiros.springcloud.springcloud.entities.Category;
+import com.github.riannegreiros.springcloud.springcloud.entities.*;
 import com.github.riannegreiros.springcloud.springcloud.services.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,18 +44,111 @@ public class DataInitializer implements CommandLineRunner {
     @Override
     @Transactional
     public void run(String... args) throws Exception {
-        seedUsers();
         seedArtists();
         seedCategories();
         seedAlbums();
         seedSongs();
+        seedUsers();
     }
 
     private void seedUsers() {
-        userService.save("Freddie Mercury", "freddie@mercury.com", "123456");
-        userService.save("Diana Ross", "diana@ross.com", "123456");
-        userService.save("Michael Jackson", "michael@jackson.com", "123456");
-        userService.save("Celine Dion", "celine@dion.com", "123456");
+        Album gubernator = albumService.findByTitle("Gubernator");
+        Album theGreatBear = albumService.findByTitle("The Great Bear");
+        Album everythingZen = albumService.findByTitle("Everything Zen");
+        Album trinity = albumService.findByTitle("Trinity");
+        Album pawPawTree = albumService.findByTitle("Paw Paw Tree");
+        Album aldebaran = albumService.findByTitle("Aldebaran");
+        Album inside = albumService.findByTitle("Inside");
+
+        User freddieMercury = userService.save("Freddie Mercury", "freddie@mercury.com", "123456");
+        Favorite favorite1 = new Favorite();
+        favorite1.setUser(freddieMercury);
+        favorite1.setAlbum(trinity);
+
+        Favorite favorite2 = new Favorite();
+        favorite2.setUser(freddieMercury);
+        favorite2.setAlbum(pawPawTree);
+
+        Favorite favorite3 = new Favorite();
+        favorite3.setUser(freddieMercury);
+        favorite3.setAlbum(everythingZen);
+
+        Favorite favorite4 = new Favorite();
+        favorite4.setUser(freddieMercury);
+        favorite4.setAlbum(gubernator);
+
+        freddieMercury.getFavorites().add(favorite1);
+        freddieMercury.getFavorites().add(favorite2);
+        freddieMercury.getFavorites().add(favorite3);
+        freddieMercury.getFavorites().add(favorite4);
+
+        RecentlyHeard recentlyHeard1 = new RecentlyHeard();
+        recentlyHeard1.setUser(freddieMercury);
+        recentlyHeard1.setAlbum(inside);
+
+        RecentlyHeard recentlyHeard2 = new RecentlyHeard();
+        recentlyHeard2.setUser(freddieMercury);
+        recentlyHeard2.setAlbum(trinity);
+
+        RecentlyHeard recentlyHeard3 = new RecentlyHeard();
+        recentlyHeard3.setUser(freddieMercury);
+        recentlyHeard3.setAlbum(gubernator);
+
+        RecentlyHeard recentlyHeard4 = new RecentlyHeard();
+        recentlyHeard4.setUser(freddieMercury);
+        recentlyHeard4.setAlbum(theGreatBear);
+
+        freddieMercury.getRecentlyHeards().add(recentlyHeard1);
+        freddieMercury.getRecentlyHeards().add(recentlyHeard2);
+        freddieMercury.getRecentlyHeards().add(recentlyHeard3);
+        freddieMercury.getRecentlyHeards().add(recentlyHeard4);
+
+        User dianaRoss = userService.save("Diana Ross", "diana@ross.com", "123456");
+        RecentlyHeard recentlyHeard5 = new RecentlyHeard();
+        recentlyHeard5.setUser(dianaRoss);
+        recentlyHeard5.setAlbum(theGreatBear);
+
+        RecentlyHeard recentlyHeard6 = new RecentlyHeard();
+        recentlyHeard6.setUser(dianaRoss);
+        recentlyHeard6.setAlbum(aldebaran);
+        RecentlyHeard recentlyHeard7 = new RecentlyHeard();
+        recentlyHeard7.setUser(dianaRoss);
+        recentlyHeard7.setAlbum(theGreatBear);
+
+        dianaRoss.getRecentlyHeards().add(recentlyHeard5);
+        dianaRoss.getRecentlyHeards().add(recentlyHeard6);
+        dianaRoss.getRecentlyHeards().add(recentlyHeard7);
+
+        Favorite favorite5 = new Favorite();
+        favorite5.setUser(dianaRoss);
+        favorite5.setAlbum(trinity);
+
+        dianaRoss.getFavorites().add(favorite5);
+
+        User michaelJackson = userService.save("Michael Jackson", "michael@jackson.com", "123456");
+        Favorite favorite6 = new Favorite();
+        favorite6.setUser(michaelJackson);
+        favorite6.setAlbum(trinity);
+
+        Favorite favorite7 = new Favorite();
+        favorite7.setUser(michaelJackson);
+        favorite7.setAlbum(pawPawTree);
+
+        michaelJackson.getFavorites().add(favorite6);
+        michaelJackson.getFavorites().add(favorite7);
+
+        User celineDion = userService.save("Celine Dion", "celine@dion.com", "123456");
+
+        Favorite favorite8 = new Favorite();
+        favorite8.setUser(celineDion);
+        favorite8.setAlbum(trinity);
+
+        Favorite favorite9 = new Favorite();
+        favorite9.setUser(celineDion);
+        favorite9.setAlbum(pawPawTree);
+
+        celineDion.getFavorites().add(favorite8);
+        celineDion.getFavorites().add(favorite9);
     }
 
     private void seedCategories() throws Exception {
