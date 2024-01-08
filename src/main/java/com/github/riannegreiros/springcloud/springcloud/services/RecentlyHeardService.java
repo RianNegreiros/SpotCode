@@ -3,12 +3,14 @@ package com.github.riannegreiros.springcloud.springcloud.services;
 import com.github.riannegreiros.springcloud.springcloud.entities.Album;
 import com.github.riannegreiros.springcloud.springcloud.entities.RecentlyHeard;
 import com.github.riannegreiros.springcloud.springcloud.entities.User;
+import com.github.riannegreiros.springcloud.springcloud.repositories.AlbumRepository;
 import com.github.riannegreiros.springcloud.springcloud.repositories.RecentlyHeardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,7 +21,12 @@ public class RecentlyHeardService {
     @Autowired
     private RecentlyHeardRepository recentlyHeardRepository;
 
-    public void save(User user, Album album) {
+    @Autowired
+    private AlbumRepository albumRepository;
+
+    public void save(User user, Long albumId) {
+        Album album = albumRepository.findById(albumId).orElseThrow(() -> new EntityNotFoundException("Album not found with id: " + albumId));
+
         RecentlyHeard recentlyHeard = new RecentlyHeard();
         recentlyHeard.setUser(user);
         recentlyHeard.setAlbum(album);
