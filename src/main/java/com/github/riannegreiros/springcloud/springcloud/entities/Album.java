@@ -33,6 +33,9 @@ public class Album extends BaseEntity {
     @JoinColumn(name = "cover_id", referencedColumnName = "id")
     private Image cover;
 
+    @OneToMany(mappedBy = "album")
+    private List<RecentlyHeard> recentlyHeard;
+
     public Album() {
     }
 

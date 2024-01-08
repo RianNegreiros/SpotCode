@@ -11,9 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Optional;
 
 @Service
 public class AlbumService {
@@ -42,5 +44,12 @@ public class AlbumService {
 
     public Album findByTitle(String title) {
         return repository.findByTitle(title);
+    }
+
+    public Album findById(Long id) {
+        Optional<Album> album = repository.findById(id);
+
+        return album.orElseThrow(() -> new EntityNotFoundException("Album not found by id:" + id));
+
     }
 }
