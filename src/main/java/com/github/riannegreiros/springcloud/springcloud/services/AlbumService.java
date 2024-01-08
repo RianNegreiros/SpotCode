@@ -50,6 +50,5 @@ public class AlbumService {
         Optional<Album> album = repository.findById(id);
 
         return album.orElseThrow(() -> new EntityNotFoundException("Album not found by id:" + id));
-
     }
 }

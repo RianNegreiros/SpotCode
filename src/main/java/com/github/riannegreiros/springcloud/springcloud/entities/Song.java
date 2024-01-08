@@ -17,6 +17,9 @@ public class Song extends BaseEntity {
     @Column(nullable = false)
     private String title;
 
+    @Column(nullable = false)
+    private int playedCount;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "file_id", referencedColumnName = "id")
     private AudioFile file;
@@ -24,10 +27,11 @@ public class Song extends BaseEntity {
     public Song() {
     }
 
-    public Song(Long id, Album album, String title, AudioFile file) {
+    public Song(Long id, Album album, String title, int playedCount, AudioFile file) {
         this.id = id;
         this.album = album;
         this.title = title;
+        this.playedCount = playedCount;
         this.file = file;
     }
 
@@ -55,6 +59,14 @@ public class Song extends BaseEntity {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public int getPlayedCount() {
+        return playedCount;
+    }
+
+    public void setPlayedCount(int playedCount) {
+        this.playedCount = playedCount;
     }
 
     public AudioFile getFile() {
